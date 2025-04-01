@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMatch - AI-Powered Recruitment</title>
+    <style>
+        /* CSS Styles */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .features {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .demo {
+            background-color: var(--primary);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .upload-area {
+            border: 2px dashed white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            cursor: pointer;
+        }
+        
+        .upload-area:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .results {
+            display: none;
+            background-color: white;
+            color: var(--dark);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: left;
+        }
+        
+        .candidate-card {
+            background-color: var(--light);
+            border-radius: 5px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .match-score {
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            background-color: var(--success);
+            color: white;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-left: 1rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">AutoMatch</div>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#demo">Demo</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+            
+            <div class="hero">
+                <h1>AI-Powered Recruitment Automation</h1>
+                <p>Transform your hiring process with intelligent JD parsing, candidate matching, and bias-free shortlisting powered by AI.</p>
+                <a href="#demo" class="btn">Try Demo</a>
+            </div>
+        </div>
+    </header>
+    
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">How AutoMatch Works</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3>JD Parsing</h3>
+                    <p>Automatically extracts skills, experience requirements, and qualifications from job descriptions with 95% accuracy.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👤</div>
+                    <h3>CV Analysis</h3>
+                    <p>Processes resumes to identify key candidate attributes, normalizing data for fair comparison.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚖️</div>
+                    <h3>Bias Detection</h3>
+                    <p>Flags potential demographic biases in screening and suggests mitigation strategies.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Smart Matching</h3>
+                    <p>Hybrid algorithm combining exact and semantic matching for optimal candidate-job fit.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Interview Scheduling</h3>
+                    <p>Automatically coordinates calendars and sends invites to shortlisted candidates.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Analytics Dashboard</h3>
+                    <p>Track hiring metrics, diversity stats, and process efficiency in real-time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="demo" class="demo">
+        <div class="demo-container">
+            <h2 class="section-title">Interactive Demo</h2>
+            <p>Upload a job description and sample resumes to see AutoMatch in action</p>
+            
+            <div class="upload-area" id="jdUpload">
+                <h3>Upload Job Description</h3>
+                <p>Drag & drop a JD file (PDF, DOCX, or TXT)</p>
+                <input type="file" id="jdInput" accept=".pdf,.docx,.txt" style="display: none;">
+            </div>
+            
+            <div class="upload-area" id="resumeUpload">
+                <h3>Upload Resumes</h3>
+                <p>Drag & drop multiple resume files</p>
+                <input type="file" id="resumeInput" accept=".pdf,.docx,.txt" multiple style="display: none;">
+            </div>
+            
+            <button id="processBtn" class="btn" disabled>Process Documents</button>
+            
+            <div class="results" id="results">
+                <h3>Top Candidates</h3>
+                <div id="candidatesList"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get Started</h2>
+            <p>Ready to transform your recruitment process? Contact us for a demo.</p>
+            <form id="contactForm" style="max-width: 500px; margin: 2rem auto;">
+                <input type="text" placeholder="Your Name" required style="width: 100%; padding: 0.8rem; margin-bottom: 1rem; border-radius: 5px; border: 1px solid #ddd;">
+                <input type="email" placeholder="Email Address" required style="width: 100%; padding: 0.8rem; margin-bottom: 1rem; border-radius: 5px; border: 1px solid #ddd;">
+                <textarea placeholder="Your Message" rows="4" style="width: 100%; padding: 0.8rem; margin-bottom: 1rem; border-radius: 5px; border: 1px solid #ddd;"></textarea>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 AutoMatch AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for interactive functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // File upload interactions
+            const jdUpload = document.getElementById('jdUpload');
+            const resumeUpload = document.getElementById('resumeUpload');
+            const jdInput = document.getElementById('jdInput');
+            const resumeInput = document.getElementById('resumeInput');
+            const processBtn = document.getElementById('processBtn');
+            const results = document.getElementById('results');
+            const candidatesList = document.getElementById('candidatesList');
+            
+            // JD Upload
+            jdUpload.addEventListener('click', function() {
+                jdInput.click();
+            });
+            
+            jdInput.addEventListener('change', function() {
+                if (jdInput.files.length > 0) {
+                    jdUpload.innerHTML = `
+                        <h3>Job Description Uploaded</h3>
+                        <p>${jdInput.files[0].name}</p>
+                    `;
+                    checkFiles();
+                }
+            });
+            
+            // Resume Upload
+            resumeUpload.addEventListener('click', function() {
+                resumeInput.click();
+            });
+            
+            resumeInput.addEventListener('change', function() {
+                if (resumeInput.files.length > 0) {
+                    resumeUpload.innerHTML = `
+                        <h3>${resumeInput.files.length} Resumes Uploaded</h3>
+                        <p>${resumeInput.files[0].name} + ${resumeInput.files.length - 1} more</p>
+                    `;
+                    checkFiles();
+                }
+            });
+            
+            function checkFiles() {
+                if (jdInput.files.length > 0 && resumeInput.files.length > 0) {
+                    processBtn.disabled = false;
+                }
+            }
+            
+            // Process button click
+            processBtn.addEventListener('click', function() {
+                processBtn.textContent = 'Processing...';
+                processBtn.disabled = true;
+                
+                // Simulate processing delay
+                setTimeout(function() {
+                    showResults();
+                }, 2000);
+            });
+            
+            // Show mock results
+            function showResults() {
+                results.style.display = 'block';
+                candidatesList.innerHTML = '';
+                
+                // Mock candidate data
+                const mockCandidates = [
+                    { name: "Alex Johnson", score: 92, skills: "Python, Machine Learning, SQL", experience: "5 years" },
+                    { name: "Sam Taylor", score: 88, skills: "Python, Data Analysis, AWS", experience: "4 years" },
+                    { name: "Jordan Smith", score: 85, skills: "Java, Python, Big Data", experience: "6 years" },
+                    { name: "Casey Williams", score: 82, skills: "Python, TensorFlow, NLP", experience: "3 years" },
+                    { name: "Riley Brown", score: 78, skills: "Python, Pandas, Data Visualization", experience: "2 years" }
+                ];
+                
+                mockCandidates.forEach(candidate => {
+                    const card = document.createElement('div');
+                    card.className = 'candidate-card';
+                    card.innerHTML = `
+                        <h4>${candidate.name} <span class="match-score">${candidate.score}% match</span></h4>
+                        <p><strong>Skills:</strong> ${candidate.skills}</p>
+                        <p><strong>Experience:</strong> ${candidate.experience}</p>
+                    `;
+                    candidatesList.appendChild(card);
+                });
+                
+                processBtn.textContent = 'Process Documents';
+                processBtn.disabled = false;
+                
+                // Scroll to results
+                results.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // Contact form submission
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will contact you soon.');
+                this.reset();
+            });
+        });
+    </script>
+</body>
+</html>
